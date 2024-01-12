@@ -1,4 +1,14 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+export const body =styled.div `
+  background: url('https://media.istockphoto.com/id/1310180818/photo/a-train-moving-with-electric-support.jpg?s=612x612&w=0&k=20&c=wVPMx6txFQ58dxT6R5feSU42h8-v9Z41KdVhcJwXS3w=') no-repeat center center fixed;
+  background-size: cover;
+  margin: 0; /* Remove default margin */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Use the full viewport height */
+`;
+
 export const Container = styled.div`
   background-color: #fff;
   border-radius: 10px;
@@ -7,17 +17,17 @@ export const Container = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 678px;
-  max-width: 100%;
+  width: 90%; /* Adjust the width as needed for different screens */
+  max-width: 678px;
   min-height: 400px;
-  overflow: hidden; /* Ensure content within is hidden outside the rounded edges */
+  overflow: hidden;
 `;
 
 export const OverlayContainer = styled.div`
   position: absolute;
-  background-image: url('https://cdn.pixabay.com/photo/2022/07/07/18/22/electric-train-7307682_1280.png'); /* Replace with the path to your train image */
-  background-repeat: no-repeat;
+  background-image: url('https://i.ibb.co/Kbwbxyr/Untitled-design-6.png'); /* Replace with the path to your train image */
   background-size: cover;
+  background-position: center; 
   top: 0;
   left: 50%;
   width: 50%;
@@ -27,6 +37,8 @@ export const OverlayContainer = styled.div`
   z-index: 100;
   border-radius: 10px; /* Inherit border-radius from Container */
   transform: ${props => (props.signinIn !== true ? 'translateX(-100%)' : 'translateX(0)')};
+  
+  
 `;
 
 export const Overlay = styled.div`
@@ -39,6 +51,7 @@ export const Overlay = styled.div`
   transition: transform 0.6s ease-in-out;
   border-radius: 10px; /* Inherit border-radius from Container */
   ${props => (props.signinIn !== true ? 'transform: translateX(50%)' : null)};
+  
 `;
 
 // ... Rest of your styles
@@ -118,8 +131,13 @@ export const Button = styled.button`
    }
 `;
 export const GhostButton = styled(Button)`
-background-color: transparent;
-border-color: #ffffff;
+  border: 4px solid black;
+  background-color: transparent;
+  border-color: #ffffff;
+  font-size: 14px;
+  margin-top: 11rem; /* Adjust the margin-top as needed */
+
+
 `;
 
 export const Anchor = styled.a`

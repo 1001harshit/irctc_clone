@@ -1,12 +1,17 @@
 import React from 'react';
-import { Auth } from './components/auth'; // Adjust the path accordingly
+import { Router, Route, Routes } from 'react-router-dom';
+import Auth from './components/auth'; // Adjust the path accordingly
+import SearchTrains from './search';
+import Profile from './profile';
 
-function App() {
-    return (
-        <div className="App">
-            <Auth />
-        </div>
-    );
-}
+const App = () => {
+  return (
+      <Routes>
+        <Route path="/" element={<Auth />} />
+        <Route path="/search" element={<SearchTrains />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+  );
+};
 
 export default App;

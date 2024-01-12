@@ -3,9 +3,12 @@ import { useState } from "react";
 import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import * as Components from '../components';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export const Auth = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSignUp, setIsSignUp] = useState(true); // To determine whether it's a signup or login
@@ -22,14 +25,16 @@ export const Auth = () => {
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 console.log("User signed in successfully!");
+                navigate('/search');
             } catch (error) {
                 console.error("Error signing in:", error.message);
             }
         }
     };
 
-    const [signIn, toggle] = React.useState(true);
+    const [signIn, toggle] = React.useState(false);
      return(
+        <Components.body>
          <Components.Container>
              <Components.SignUpContainer signinIn={signIn}>
                  <Components.Form>
@@ -52,25 +57,19 @@ export const Auth = () => {
              </Components.SignInContainer>
 
              <Components.OverlayContainer signinIn={signIn}>
+                
                  <Components.Overlay signinIn={signIn}>
 
                  <Components.LeftOverlayPanel signinIn={signIn}>
-                     <Components.Title>Welcome Back!</Components.Title>
-                     <Components.Paragraph>
-                         To keep connected with us please login with your personal info
-                     </Components.Paragraph>
-                     <Components.GhostButton onClick={() => toggle(true)}>
+
+                     <Components.GhostButton onClick={() => {toggle(true); setIsSignUp(false);}}>
                          Sign In
                      </Components.GhostButton>
                      </Components.LeftOverlayPanel>
 
                      <Components.RightOverlayPanel signinIn={signIn}>
-                       <Components.Title>Hello, Friend!</Components.Title>
-                       <Components.Paragraph>
-                           Enter Your personal details and start journey with us
-                       </Components.Paragraph>
-                           <Components.GhostButton onClick={() => toggle(false)}>
-                               Sigin Up
+                           <Components.GhostButton onClick={() => {toggle(false); setIsSignUp(true);}}>
+                               Sign Up
                            </Components.GhostButton> 
                      </Components.RightOverlayPanel>
  
@@ -78,6 +77,7 @@ export const Auth = () => {
              </Components.OverlayContainer>
 
          </Components.Container>
+         </Components.body>
      )
 }
     
